@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Valentina ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a0d1a 50%, #0d0d1a 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fondo con el nombre Valentina */
+        .background-text {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.08;
+            font-size: 6vw;
+            font-weight: bold;
+            color: #ff69b4;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            transform: rotate(-15deg);
+            white-space: nowrap;
+        }
+
+        .background-text span {
+            display: block;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .background-text span:nth-child(2) { animation-delay: 2s; }
+        .background-text span:nth-child(3) { animation-delay: 4s; }
+        .background-text span:nth-child(4) { animation-delay: 1s; }
+        .background-text span:nth-child(5) { animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Container principal */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Rosa principal mejorada */
+        .jar-container {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .glass {
+            height: 400px;
+            width: 280px;
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                rgba(18, 33, 57, 0.3) 100%);
+            border-radius: 140px 140px 0px 0px;
+            position: relative;
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 0 40px rgba(255, 105, 180, 0.4),
+                inset 0 0 30px rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .glass:before {
+            content: "";
+            height: 20px;
+            width: 20px;
+            border: 12px solid rgba(255, 255, 255, 0.3);
+            border-radius: 100%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -37px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .glass:after {
+            content: "";
+            position: absolute;
+            height: 8px;
+            width: 100%;
+            background: linear-gradient(90deg, #a52a2a, #8b0000);
+            top: 100%;
+            left: 0;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .shine {
+            width: 15px;
+            height: 200px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+            opacity: 0.6;
+            position: absolute;
+            right: 20px;
+            top: 50px;
+            border-radius: 20px;
+            z-index: 10;
+            animation: shineFlicker 3s ease-in-out infinite;
+        }
+
+        @keyframes shineFlicker {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Rosa dentro del frasco */
+        .petals {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .petals > div {
+            position: absolute;
+            background: #d52d58;
+            width: 40px;
+            height: 60px;
+            transition: all 0.5s ease-out;
+        }
+
+        .petals > div:nth-child(1) {
+            border-radius: 15px;
+            box-shadow: 0px 0px 30px rgba(245, 148, 184, 1);
+            left: -20px;
+            top: 0;
+            background: #d52d58;
+            z-index: 10;
+        }
+
+        .petals > div:nth-child(2),
+        .petals > div:nth-child(4),
+        .petals > div:nth-child(6) {
+            background: #b81b43;
+            left: -35px;
+            border-radius: 0px 25px 0px 25px;
+            transform-origin: bottom right;
+        }
+
+        .petals > div:nth-child(3),
+        .petals > div:nth-child(5),
+        .petals > div:nth-child(7) {
+            background: #b81b43;
+            left: -5px;
+            border-radius: 25px 0px 25px 0px;
+            transform-origin: bottom left;
+        }
+
+        .petals > div:nth-child(2) {
+            z-index: 5;
+            background: #ab1a3f;
+            top: 5px;
+            height: 65px;
+            box-shadow: 0px 0px 30px rgba(245, 148, 184, .5);
+            animation: bloom2 3s ease-in-out infinite;
+        }
+
+        .petals > div:nth-child(3) {
+            z-index: 4;
+            background: #ab1a3f;
+            top: 5px;
+            height: 65px;
+            box-shadow: 0px 0px 30px rgba(245, 148, 184, .5);
+            animation: bloom3 3s ease-in-out infinite, glowing 2.5s ease-in-out infinite;
+        }
+
+        .petals > div:nth-child(4) {
+            z-index: 3;
+            background: #b81b43;
+            top: 3px;
+            height: 67px;
+            box-shadow: 0px 0px 30px rgba(245, 148, 184, .5);
+            animation: bloom4 3s ease-in-out infinite, glowing 2.5s ease-in-out infinite;
+        }
+
+        .petals > div:nth-child(5) {
+            z-index: 2;
+            background: #b81b43;
+            top: 3px;
+            height: 67px;
+            box-shadow: 0px 0px 30px rgba(245, 148, 184, .5);
+            animation: bloom5 3s ease-in-out infinite, glowing 2.5s ease-in-out infinite;
+        }
+
+        .petals > div:nth-child(6) {
+            z-index: 1;
+            background: #c9204b;
+            top: 0px;
+            height: 65px;
+            box-shadow: 0px 0px 30px rgba(245, 148, 184, .3);
+            animation: bloom6 3s ease-in-out infinite, glowing 2.5s ease-in-out infinite;
+        }
+
+        .petals > div:nth-child(7) {
+            z-index: 0;
+            background: #c9204b;
+            top: 0px;
+            height: 65px;
+            box-shadow: 0px 0px 30px rgba(245, 148, 184, .3);
+            animation: bloom7 3s ease-in-out infinite, glowing 2.5s ease-in-out infinite;
+        }
+
+        /* Tallo y hojas */
+        .leaves {
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .leaves > div:nth-child(1) {
+            position: absolute;
+            width: 8px;
+            height: 200px;
+            background: linear-gradient(180deg, #054c05, #338f37);
+            top: 0;
+            left: -4px;
+            border-radius: 0 0 50px 50px;
+        }
+
+        .leaves > div:nth-child(2) {
+            position: absolute;
+            width: 30px;
+            height: 50px;
+            border-radius: 5px 40px 20px 40px;
+            background: linear-gradient(135deg, #054c05, #338f37);
+            transform: rotate(-30deg);
+            top: 80px;
+            left: -25px;
+            box-shadow: inset 5px 5px rgba(6, 100, 6, 0.8);
+        }
+
+        .leaves > div:nth-child(3) {
+            position: absolute;
+            width: 30px;
+            height: 50px;
+            border-radius: 40px 5px 40px 20px;
+            background: linear-gradient(135deg, #054c05, #338f37);
+            transform: rotate(30deg);
+            top: 50px;
+            left: 5px;
+            box-shadow: inset -5px 5px rgba(6, 100, 6, 0.8);
+        }
+
+        /* Animaciones de pétalos */
+        @keyframes bloom2 {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        @keyframes bloom3 {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-8deg); }
+        }
+
+        @keyframes bloom4 {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(6deg); }
+        }
+
+        @keyframes bloom5 {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-6deg); }
+        }
+
+        @keyframes bloom6 {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(4deg); }
+        }
+
+        @keyframes bloom7 {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-4deg); }
+        }
+
+        @keyframes glowing {
+            0%, 100% { 
+                background: #b81b43;
+                box-shadow: 0px 0px 30px rgba(245, 148, 184, 0.3);
+            }
+            50% { 
+                background: #d7365f;
+                box-shadow: 0px 0px 40px rgba(245, 148, 184, 0.8);
+            }
+        }
+
+        /* Pétalos que caen */
+        .petal {
+            position: absolute;
+            width: 10px;
+            height: 15px;
+            background: radial-gradient(ellipse, #ff1744, #c62828);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        @keyframes fallAndFade {
+            0% {
+                transform: translateY(0px) translateX(0px) rotate(0deg);
+                opacity: 0.9;
+            }
+            30% {
+                transform: translateY(30vh) translateX(var(--sway, 0px)) rotate(180deg);
+                opacity: 0.7;
+            }
+            70% {
+                transform: translateY(70vh) translateX(calc(var(--sway, 0px) * 1.5)) rotate(270deg);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(100vh) translateX(calc(var(--sway, 0px) * 2)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Mensaje romántico */
+        .message {
+            text-align: center;
+            color: #fff;
+            font-size: 1.4em;
+            line-height: 1.8;
+            max-width: 600px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            animation: messageGlow 4s ease-in-out infinite;
+            margin: 30px 0;
+        }
+
+        @keyframes messageGlow {
+            0%, 100% { 
+                border-color: rgba(255, 105, 180, 0.3);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            }
+            50% { 
+                border-color: rgba(255, 105, 180, 0.8);
+                box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+            }
+        }
+
+        .signature {
+            margin-top: 15px;
+            font-style: italic;
+            color: #ff69b4;
+            font-size: 0.9em;
+        }
+
+        /* Botón musical */
+        .music-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff69b4, #ff1744, #c62828);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            box-shadow: 
+                0 8px 25px rgba(255, 105, 180, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            animation: musicPulse 2s ease-in-out infinite;
+            margin-top: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .music-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(255, 105, 180, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            background: linear-gradient(45deg, #ff1744, #ff69b4, #d7365f);
+        }
+
+        .music-button:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+            }
+            50% { 
+                transform: scale(1.03);
+                box-shadow: 0 10px 30px rgba(255, 105, 180, 0.6);
+            }
+        }
+
+        /* Efectos de partículas */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #ff69b4, #ff1744);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Corazones flotantes */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 18px;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 12px;
+            height: 19px;
+            position: absolute;
+            left: 10px;
+            transform: rotate(-45deg);
+            background: rgba(255, 105, 180, 0.7);
+            border-radius: 12px 12px 0 0;
+            transform-origin: 0 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-50vh) rotate(180deg) scale(1.2);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .message {
+                font-size: 1.1em;
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .glass {
+                width: 200px;
+                height: 300px;
+            }
+            
+            .background-text {
+                font-size: 10vw;
+            }
+
+            .music-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .glass {
+                width: 180px;
+                height: 270px;
+            }
+            
+            .message {
+                font-size: 1em;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-text">
+        <span>Valentina</span>
+        <span>Valentina</span>
+        <span>Valentina</span>
+        <span>Valentina</span>
+        <span>Valentina</span>
+        <span>Valentina</span>
+    </div>
+
+    <div class="container">
+        <div class="jar-container">
+            <div class="glass">
+                <div class="shine"></div>
+                <div class="petals">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="leaves">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="message">
+            <p>"Valentina, te dejaré de querer, buscar, y admirar.<br>
+            El día que esta rosa se quede sin pétalos"</p>
+            <div class="signature">Con todo mi amor ❤️</div>
+            
+            <a href="https://www.youtube.com/watch?v=qz0WjbGlmv0&list=RDqz0WjbGlmv0&start_radio=1" 
+               target="_blank" 
+               class="music-button">
+               🎵 Te dedico esta canción 🎵
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Función para crear pétalos que caen
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            
+            // Posición aleatoria desde la rosa
+            const roseContainer = document.querySelector('.jar-container');
+            const rect = roseContainer.getBoundingClientRect();
+            const startX = rect.left + rect.width / 2 + (Math.random() - 0.5) * 80;
+            const startY = rect.top + rect.height - 120;
+            
+            petal.style.left = startX + 'px';
+            petal.style.top = startY + 'px';
+            petal.style.position = 'fixed';
+            
+            // Variables para el movimiento
+            const sway = (Math.random() - 0.5) * 100;
+            petal.style.setProperty('--sway', sway + 'px');
+            
+            // Duración aleatoria de la caída
+            const duration = 4 + Math.random() * 6;
+            petal.style.animation = `fallAndFade ${duration}s ease-out forwards`;
+            
+            document.body.appendChild(petal);
+            
+            // Eliminar el pétalo después de la animación
+            setTimeout(() => {
+                if (petal.parentNode) {
+                    petal.parentNode.removeChild(petal);
+                }
+            }, duration * 1000);
+        }
+
+        // Función para crear corazones flotantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.bottom = '0px';
+            heart.style.position = 'fixed';
+            
+            const duration = 8 + Math.random() * 4;
+            heart.style.animation = `heartFloat ${duration}s ease-out forwards`;
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                if (heart.parentNode) {
+                    heart.parentNode.removeChild(heart);
+                }
+            }, duration * 1000);
+        }
+
+        // Función para crear partículas brillantes
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = Math.random() * window.innerHeight + 'px';
+            particle.style.position = 'fixed';
+            particle.style.animation = `twinkle ${2 + Math.random() * 3}s ease-in-out infinite`;
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.body.appendChild(particle);
+            
+            // Eliminar después de 12 segundos
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 12000);
+        }
+
+        // Crear pétalos continuamente
+        setInterval(createPetal, 2000 + Math.random() * 1500);
+
+        // Crear corazones ocasionalmente
+        setInterval(createHeart, 3000 + Math.random() * 2000);
+
+        // Crear partículas ocasionalmente
+        setInterval(createParticle, 1500 + Math.random() * 1000);
+
+        // Crear algunos efectos iniciales
+        for (let i = 0; i < 25; i++) {
+            setTimeout(createParticle, i * 150);
+        }
+
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 1000);
+        }
+
+        // Efecto especial al hacer clic en el botón de música
+        document.querySelector('.music-button').addEventListener('mouseenter', function() {
+            for (let i = 0; i < 8; i++) {
+                setTimeout(createHeart, i * 200);
+            }
+        });
+    </script>
+</body>
+</html>
